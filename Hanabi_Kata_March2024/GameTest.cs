@@ -92,7 +92,10 @@ namespace Hanabi_Kata_March2024
             //Arrange 
 
             //Act
-            game.NumberOfRemainingCardsInTheDeck = 0;
+            while (game.NumberOfRemainingCardsInTheDeck > 0)
+            {
+                game.ACardIsPicked();
+            }
 
             //Assert
             Assert.True(game.IsInItsLastRound());
@@ -104,7 +107,10 @@ namespace Hanabi_Kata_March2024
             //Arrange
 
             //Act
-            game.NumberOfRemainingCardsInTheDeck = 10;
+            while (game.NumberOfRemainingCardsInTheDeck > 10)
+            {
+                game.ACardIsPicked();
+            }
 
             //Assert
             Assert.False(game.IsInItsLastRound());
@@ -121,6 +127,23 @@ namespace Hanabi_Kata_March2024
 
             //Assert
             Assert.Equal(1, numberOfInitialCardsInTheDeck - game.NumberOfRemainingCardsInTheDeck);
+        }
+
+        [Fact]
+        public void IfACardIsPickedAndTheDeckIsEmpty_AnErrorIsThrown()
+        {
+            //Arrange 
+
+            //Act
+            while (game.NumberOfRemainingCardsInTheDeck > 0)
+            {
+                game.ACardIsPicked();
+            }
+            Action act = () => game.ACardIsPicked();
+
+            //Assert
+            var exception = Assert.Throws<Exception>(act);
+            Assert.Equal("Deck is empty, you are not allowed to pick a card", exception.Message);
         }
     }
 }

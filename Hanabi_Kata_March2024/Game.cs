@@ -1,6 +1,8 @@
 ﻿
 
 
+using Xunit.Sdk;
+
 namespace Hanabi_Kata_March2024
 {
     internal class Game
@@ -9,10 +11,10 @@ namespace Hanabi_Kata_March2024
         const int MAX_COMPLETED_SEQUENCES = 5;
 
         public int NumberOfMistakesMade { get; private set; }
-        public int NumberOfCompletedSequences { get; internal set; }
+        public int NumberOfCompletedSequences { get; private set; }
 
 
-        public int NumberOfRemainingCardsInTheDeck { get; internal set; }
+        public int NumberOfRemainingCardsInTheDeck { get; private set; }
 
         public Game()
         {
@@ -31,6 +33,7 @@ namespace Hanabi_Kata_March2024
         }
         internal void ACardIsPicked()
         {
+            if (NumberOfRemainingCardsInTheDeck == 0) { throw new Exception("Deck is empty, you are not allowed to pick a card"); }
             NumberOfRemainingCardsInTheDeck--;
         }
 

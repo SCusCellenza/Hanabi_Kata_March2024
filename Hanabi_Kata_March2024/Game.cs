@@ -7,6 +7,8 @@ namespace Hanabi_Kata_March2024
     internal class Game
     {
         const int MAX_ALLOWED_MISTAKES = 3;
+        const int MAX_COMPLETED_SEQUENCES = 5;
+
         public int NumberOfMistakesMade { get; private set; }
         public int NumberOfCompletedSequences { get; internal set; }
 
@@ -41,7 +43,7 @@ namespace Hanabi_Kata_March2024
 
         internal bool IsWon()
         {
-            if (NumberOfCompletedSequences == 5) return true;
+            if (NumberOfCompletedSequences == MAX_COMPLETED_SEQUENCES) return true;
             return false;
         }
     }

@@ -2,11 +2,19 @@ namespace Hanabi_Kata_March2024
 {
     public class GameTest
     {
+        private Game game;
+        const int MAX_ALLOWED_MISTAKES = 3;
+        const int MAX_COMPLETED_SEQUENCES = 5;
+        public GameTest()
+        {
+            // Constructor is called before each test method
+            game = new Game();
+        }
+
         [Fact]
         public void IfAMistakeIsMade_ARedTokenIsAddedInTheBox()
         {
             //Arrange
-            Game game = new Game();
             int initialMistakes = game.NumberOfMistakesMade;
 
             //Act
@@ -20,7 +28,6 @@ namespace Hanabi_Kata_March2024
         public void IfThreeMistakesAreMade_GameIsOverAndGameIsLost()
         {
             //Arrange
-            Game game = new Game();
 
             //Act
             game.MistakeIsMade();
@@ -30,14 +37,13 @@ namespace Hanabi_Kata_March2024
             //Assert
             Assert.True(game.IsOver());
             Assert.True(game.IsLost());
-            Assert.Equal(3, game.NumberOfMistakesMade);
+            Assert.Equal(MAX_ALLOWED_MISTAKES, game.NumberOfMistakesMade);
         }
 
         [Fact]
         public void IfLessThanThreeMistakesAreMade_GameIsNotOverAndNotLost()
         {
             //Arrange
-            Game game = new Game();
 
             //Act
             game.MistakeIsMade();
@@ -45,27 +51,25 @@ namespace Hanabi_Kata_March2024
             //Assert
             Assert.False(game.IsOver());
             Assert.False(game.IsLost());
-            Assert.NotEqual(3, game.NumberOfMistakesMade);
+            Assert.NotEqual(MAX_ALLOWED_MISTAKES, game.NumberOfMistakesMade);
         }
 
         [Fact]
         public void IfAllFiveCardSequencesAreCompleted_GameIsWonAndOver()
         {
             //Arrange
-            Game game = new Game();
 
             //Act
-            game.ASequenceIsCompleted();
-            game.ASequenceIsCompleted();
-            game.ASequenceIsCompleted();
-            game.ASequenceIsCompleted();
-            game.ASequenceIsCompleted();
+            for (int i = 0; i < MAX_COMPLETED_SEQUENCES; i++)
+            {
+                game.ASequenceIsCompleted();
+            }
 
             //Assert
             Assert.True(game.IsOver());
             Assert.True(game.IsWon());
             Assert.False(game.IsLost());
-            Assert.Equal(5, game.NumberOfCompletedSequences);
+            Assert.Equal(MAX_COMPLETED_SEQUENCES, game.NumberOfCompletedSequences);
         }
     }
 }

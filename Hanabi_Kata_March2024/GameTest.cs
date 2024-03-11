@@ -55,7 +55,7 @@ namespace Hanabi_Kata_March2024
         }
 
         [Fact]
-        public void IfAllFiveCardSequencesAreCompleted_GameIsWonAndOver()
+        public void IfAllFiveSequencesAreCompleted_GameIsWonAndOver()
         {
             //Arrange
 
@@ -70,6 +70,57 @@ namespace Hanabi_Kata_March2024
             Assert.True(game.IsWon());
             Assert.False(game.IsLost());
             Assert.Equal(MAX_COMPLETED_SEQUENCES, game.NumberOfCompletedSequences);
+        }
+
+        [Fact]
+        public void IfLessThanFiveSequencesAreCompleted_GameIsNotWon()
+        {
+            //Arrange
+
+            //Act
+            game.ASequenceIsCompleted();
+
+            //Assert
+            Assert.False(game.IsWon());
+            Assert.NotEqual(MAX_COMPLETED_SEQUENCES, game.NumberOfCompletedSequences);
+            //No other assert needs to be made, the game can be over or not, lost or not, for this test 
+        }
+
+        [Fact]
+        public void IfLastCardOfTheDeckIsPicked_GameIsInItsLastRound()
+        {
+            //Arrange 
+
+            //Act
+            game.NumberOfRemainingCardsInTheDeck = 0;
+
+            //Assert
+            Assert.True(game.IsInItsLastRound());
+        }
+
+        [Fact]
+        public void IfCardsAreAvailableInTheDeck_GameIsNotInItsLastRound()
+        {
+            //Arrange
+
+            //Act
+            game.NumberOfRemainingCardsInTheDeck = 10;
+
+            //Assert
+            Assert.False(game.IsInItsLastRound());
+        }
+
+        [Fact]
+        public void IfACardIsPicked_TheNumbersOfRemainingCardsInTheDeckDecreasesByOne()
+        {
+            //Arrange 
+            int numberOfInitialCardsInTheDeck = game.NumberOfRemainingCardsInTheDeck;
+            
+            //Act 
+            game.ACardIsPicked();
+
+            //Assert
+            Assert.Equal(1, numberOfInitialCardsInTheDeck - game.NumberOfRemainingCardsInTheDeck);
         }
     }
 }

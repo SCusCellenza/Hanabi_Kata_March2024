@@ -1,7 +1,6 @@
 ﻿
 
 
-
 namespace Hanabi_Kata_March2024
 {
     internal class Game
@@ -12,11 +11,35 @@ namespace Hanabi_Kata_March2024
         public int NumberOfMistakesMade { get; private set; }
         public int NumberOfCompletedSequences { get; internal set; }
 
+
+        public int NumberOfRemainingCardsInTheDeck { get; internal set; }
+
         public Game()
         {
             NumberOfMistakesMade = 0;
             NumberOfCompletedSequences = 0;
+            NumberOfRemainingCardsInTheDeck = 50;
         }
+        internal void MistakeIsMade()
+        {
+            NumberOfMistakesMade++;
+        }
+
+        internal void ASequenceIsCompleted()
+        {
+            NumberOfCompletedSequences++;
+        }
+        internal void ACardIsPicked()
+        {
+            NumberOfRemainingCardsInTheDeck--;
+        }
+
+        public bool IsInItsLastRound()
+        {
+            if (NumberOfRemainingCardsInTheDeck > 0) { return false; }
+            return true;
+        }
+
 
         internal bool IsLost()
         {
@@ -31,20 +54,12 @@ namespace Hanabi_Kata_March2024
             return false;
         }
 
-        internal void MistakeIsMade()
-        {
-            NumberOfMistakesMade++;
-        }
-
-        internal void ASequenceIsCompleted()
-        {
-            NumberOfCompletedSequences++;
-        }
 
         internal bool IsWon()
         {
             if (NumberOfCompletedSequences == MAX_COMPLETED_SEQUENCES) return true;
             return false;
         }
+
     }
 }

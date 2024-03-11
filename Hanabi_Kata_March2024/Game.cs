@@ -15,12 +15,14 @@ namespace Hanabi_Kata_March2024
 
 
         public int NumberOfRemainingCardsInTheDeck { get; private set; }
+        public bool AllPlayersPlayedDuringLastRound { get; internal set; }
 
         public Game()
         {
             NumberOfMistakesMade = 0;
             NumberOfCompletedSequences = 0;
             NumberOfRemainingCardsInTheDeck = 50;
+            AllPlayersPlayedDuringLastRound = false;
         }
         internal void MistakeIsMade()
         {
@@ -33,7 +35,8 @@ namespace Hanabi_Kata_March2024
         }
         internal void ACardIsPicked()
         {
-            if (NumberOfRemainingCardsInTheDeck == 0) { throw new Exception("Deck is empty, you are not allowed to pick a card"); }
+            if (NumberOfRemainingCardsInTheDeck == 0) 
+                { throw new Exception("Deck is empty, you are not allowed to pick a card"); }
             NumberOfRemainingCardsInTheDeck--;
         }
 
@@ -54,6 +57,8 @@ namespace Hanabi_Kata_March2024
         {
             if (IsLost()) return true;
             if (IsWon()) return true;
+            if (AllPlayersPlayedDuringLastRound) return true;
+            
             return false;
         }
 

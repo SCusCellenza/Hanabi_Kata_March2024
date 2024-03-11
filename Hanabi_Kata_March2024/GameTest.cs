@@ -47,5 +47,6 @@ namespace Hanabi_Kata_March2024
             Assert.False(game.IsLost());
             Assert.NotEqual(3, game.NumberOfMistakesMade);
         }
+
     }
 }

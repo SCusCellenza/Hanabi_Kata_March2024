@@ -48,5 +48,24 @@ namespace Hanabi_Kata_March2024
             Assert.NotEqual(3, game.NumberOfMistakesMade);
         }
 
+        [Fact]
+        public void IfAllFiveCardSequencesAreCompleted_GameIsWonAndOver()
+        {
+            //Arrange
+            Game game = new Game();
+
+            //Act
+            game.ASequenceIsCompleted();
+            game.ASequenceIsCompleted();
+            game.ASequenceIsCompleted();
+            game.ASequenceIsCompleted();
+            game.ASequenceIsCompleted();
+
+            //Assert
+            Assert.True(game.IsOver());
+            Assert.True(game.IsWon());
+            Assert.False(game.IsLost());
+            Assert.Equal(5, game.NumberOfCompletedSequences);
+        }
     }
 }

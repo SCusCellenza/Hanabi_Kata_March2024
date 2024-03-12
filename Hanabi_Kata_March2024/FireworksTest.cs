@@ -3,11 +3,15 @@ namespace Hanabi_Kata_March2024
 {
     public class FireworksTest
     {
+        private Fireworks fireworks;
+        public FireworksTest() 
+        { 
+            fireworks = new Fireworks();
+        }
         [Fact]
         public void IfNoCardWasCorrectlyPlayed_ScoreEqualsZero()
         {
             //Arrange
-            Fireworks fireworks = new Fireworks();
 
             //Act
 
@@ -19,7 +23,6 @@ namespace Hanabi_Kata_March2024
         public void IfAllCardWereCorrectlyPlayed_ScoreEquals25()
         {
             //Arrange
-            Fireworks fireworks = new Fireworks();
 
             //Act
             for (int i = 0; i < 5; i++)
@@ -39,7 +42,6 @@ namespace Hanabi_Kata_March2024
         public void IfAnAuthorizedCardIsPlayedTwice_ScoreIncreasesByTwo()
         {
             //Arrange 
-            Fireworks fireworks = new Fireworks();
             int initialScore = fireworks.Count();
 
             //Act
@@ -54,7 +56,6 @@ namespace Hanabi_Kata_March2024
         public void IfAnUnauthorizedCardIsPlayed_ScoreDoesntIncreaseAndExceptionIsThrown()
         {
             //Arrange
-            Fireworks fireworks = new Fireworks();
             int initialScore = fireworks.Count();
 
             //Act 

@@ -28,9 +28,13 @@ namespace Hanabi_Kata_March2024
 
         internal void TryToPlayCard(Card card)
         {
-            if (playedCard[card.color] + 1 != card.value)
-                throw new Exception("Wrong card played");
-            playedCard[card.color] = card.value;
+            if (playedCard[card.color] + 1 == card.value)
+            {
+                playedCard[card.color] = card.value;
+                return;
+            }
+            
+            throw new Exception("Wrong card played");
         }
     }
 }

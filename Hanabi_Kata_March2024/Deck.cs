@@ -59,8 +59,8 @@ namespace Hanabi_Kata_March2024
             if (_cardsInDeck.Count() == 0)
                 { throw new Exception("Deck is empty, you are not allowed to pick a card"); }
 
-            Random random = new Random();
-            int randomNumber = random.Next(0, _cardsInDeck.Count);
+            int randomNumber = new Random().Next(0, _cardsInDeck.Count);
+
             Card card = _cardsInDeck[randomNumber];
             _cardsInDeck.RemoveAt(randomNumber);
             return card;

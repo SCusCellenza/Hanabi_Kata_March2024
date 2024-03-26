@@ -102,21 +102,5 @@ namespace Hanabi_Kata_March2024
             //Assert
             Assert.True(gameStatus.IsInItsLastRound());
         }
-
-        //[Fact]
-        //public void IfCardsAreAvailableInTheDeck_GameIsNotInItsLastRound()
-        //{
-        //    //Arrange
-
-        //    //Act
-        //    while (gameStatus.NumberOfRemainingCardsInTheDeck > 10)
-        //    {
-        //        gameStatus.ACardIsPicked();
-        //    }
-
-        //    //Assert
-        //    Assert.False(gameStatus.IsInItsLastRound());
-        //    Assert.NotEqual(0, gameStatus.NumberOfRemainingCardsInTheDeck);
-        //}
     }
 }

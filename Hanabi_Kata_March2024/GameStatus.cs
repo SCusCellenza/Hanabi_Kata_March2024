@@ -14,7 +14,6 @@ namespace Hanabi_Kata_March2024
         public int NumberOfCompletedSequences { get; private set; }
 
 
-        public int NumberOfRemainingCardsInTheDeck { get; private set; }
         public bool AllPlayersPlayedDuringLastRound { get; internal set; }
 
         private Deck _deck;
@@ -23,7 +22,6 @@ namespace Hanabi_Kata_March2024
         {
             NumberOfMistakesMade = 0;
             NumberOfCompletedSequences = 0;
-            NumberOfRemainingCardsInTheDeck = 50;
             AllPlayersPlayedDuringLastRound = false;
             _deck = deck;
         }

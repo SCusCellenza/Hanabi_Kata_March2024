@@ -56,6 +56,20 @@ namespace Hanabi_Kata_March2024
             // Assert
             Assert.Equal(initialCount - 1, deck.Count());
             Assert.NotNull(card);
+
+            //TODO : is it okay to do if statements in tests?
+            if (card.value == 1)
+            {
+                Assert.Equal(NUMBER_OF_1_CARDS - 1, deck.CountCardsOfColorAndValue(card.color, card.value));
+            }
+            else if (card.value >= 2 || card.value <= 4)
+            {
+                Assert.Equal(NUMBER_OF_2_3_4_CARDS - 1, deck.CountCardsOfColorAndValue(card.color, card.value));
+            }
+            else
+            {
+                Assert.Equal(NUMBER_OF_5_CARDS - 1, deck.CountCardsOfColorAndValue(card.color, card.value));
+            }
         }
         
     }

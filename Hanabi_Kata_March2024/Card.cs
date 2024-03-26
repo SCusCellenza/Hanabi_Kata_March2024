@@ -8,6 +8,8 @@
         GREEN,
         YELLOW
     }
+
+    // TODO : properties can be modified /!\
     internal class Card
     {
         public int value;

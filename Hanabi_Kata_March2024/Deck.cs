@@ -11,36 +11,47 @@ namespace Hanabi_Kata_March2024
         private List<Card> _cardsInDeck = new List<Card>();
         private const int NUMBER_OF_1_CARDS = 3;
         private const int NUMBER_OF_2_3_4_CARDS = 2;
+        private const int CARD_OF_VALUE_2 = 2;
+        private const int CARD_OF_VALUE_4 = 4;
 
         //TODO : should the factory pattern be used ? Knowing that the deck needs to be randomized : note the deck is not shuffled in the current implementation but the distribution is randomized
         public Deck()
         {
             for (int i = 0; i < NUMBER_OF_1_CARDS; i++)
             {
-                _cardsInDeck.Add(new Card(1, CardColors.RED));
-                _cardsInDeck.Add(new Card(1, CardColors.BLUE));
-                _cardsInDeck.Add(new Card(1, CardColors.WHITE));
-                _cardsInDeck.Add(new Card(1, CardColors.GREEN));
-                _cardsInDeck.Add(new Card(1, CardColors.YELLOW));
+                _cardsInDeck.AddRange(new List<Card>
+                {
+                    new Card(1, CardColors.RED),
+                    new Card(1, CardColors.BLUE),
+                    new Card(1, CardColors.WHITE),
+                    new Card(1, CardColors.GREEN),
+                    new Card(1, CardColors.YELLOW)
+                });
             }
 
-            for (int cardNumber = 2; cardNumber < 5; cardNumber++)
+            for (int cardNumber = CARD_OF_VALUE_2; cardNumber <= CARD_OF_VALUE_4; cardNumber++)
             {
                 for (int i = 0; i < NUMBER_OF_2_3_4_CARDS; i++)
                 {
-                    _cardsInDeck.Add(new Card(cardNumber, CardColors.RED));
-                    _cardsInDeck.Add(new Card(cardNumber, CardColors.BLUE));
-                    _cardsInDeck.Add(new Card(cardNumber, CardColors.WHITE));
-                    _cardsInDeck.Add(new Card(cardNumber, CardColors.GREEN));
-                    _cardsInDeck.Add(new Card(cardNumber, CardColors.YELLOW));
+                    _cardsInDeck.AddRange(new List<Card>
+                    {
+                        new Card(cardNumber, CardColors.RED),
+                        new Card(cardNumber, CardColors.BLUE),
+                        new Card(cardNumber, CardColors.WHITE),
+                        new Card(cardNumber, CardColors.GREEN),
+                        new Card(cardNumber, CardColors.YELLOW)
+                    });
                 }
             }
-
-            _cardsInDeck.Add(new Card(5, CardColors.RED));
-            _cardsInDeck.Add(new Card(5, CardColors.BLUE));
-            _cardsInDeck.Add(new Card(5, CardColors.WHITE));
-            _cardsInDeck.Add(new Card(5, CardColors.GREEN));
-            _cardsInDeck.Add(new Card(5, CardColors.YELLOW));
+        
+            _cardsInDeck.AddRange(new List<Card>
+            {
+                new Card(5, CardColors.RED),
+                new Card(5, CardColors.BLUE),
+                new Card(5, CardColors.WHITE),
+                new Card(5, CardColors.GREEN),
+                new Card(5, CardColors.YELLOW)
+            });
         }
 
         internal int Count()

@@ -5,6 +5,11 @@ namespace Hanabi_Kata_March2024
 {
     public class DeckTest
     {
+        private const int NUMBER_OF_1_CARDS = 3;
+        private const int NUMBER_OF_2_3_4_CARDS = 2;
+        private const int NUMBER_OF_5_CARDS = 1;
+        private const int NUMBER_OF_CARDS = 50;
+
         [Fact]
         public void DeckShouldBeFilledWith50Cards_WhenTheGameStarts()
         {
@@ -14,15 +19,15 @@ namespace Hanabi_Kata_March2024
             // Act
 
             // Assert
-            Assert.Equal(50, deck.Count());
+            Assert.Equal(NUMBER_OF_CARDS, deck.Count());
         }
 
         [Theory]
-        [InlineData(1, 3)]
-        [InlineData(2, 2)]
-        [InlineData(3, 2)]
-        [InlineData(4, 2)]
-        [InlineData(5, 1)]
+        [InlineData(1, NUMBER_OF_1_CARDS)]
+        [InlineData(2, NUMBER_OF_2_3_4_CARDS)]
+        [InlineData(3, NUMBER_OF_2_3_4_CARDS)]
+        [InlineData(4, NUMBER_OF_2_3_4_CARDS)]
+        [InlineData(5, NUMBER_OF_5_CARDS)]
         public void DeckShouldContain3CardsOfNumberOneForEachColor_WhenTheGameStarts(int cardValue, int expectedNumber)
         {
             // Arrange
@@ -39,17 +44,18 @@ namespace Hanabi_Kata_March2024
         }
 
         [Fact]
-        public void DeckShouldContainOneLessCard_WhenItDistributeACard()
+        public void DeckShouldReturnACardAndContainOneLessCard_WhenItDistributeACard()
         {
             // Arrange
             Deck deck = new Deck();
             int initialCount = deck.Count();
 
             // Act
-            deck.DistributeCard();
+            Card card = deck.DistributeCard();
 
             // Assert
             Assert.Equal(initialCount - 1, deck.Count());
+            Assert.NotNull(card);
         }
         
     }

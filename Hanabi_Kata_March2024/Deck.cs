@@ -11,6 +11,8 @@ namespace Hanabi_Kata_March2024
         private List<Card> _cardsInDeck = new List<Card>();
         private const int NUMBER_OF_1_CARDS = 3;
         private const int NUMBER_OF_2_3_4_CARDS = 2;
+
+        //TODO : should the factory pattern be used ? Knowing that the deck needs to be randomized : note the deck is not shuffled in the current implementation but the distribution is randomized
         public Deck()
         {
             for (int i = 0; i < NUMBER_OF_1_CARDS; i++)
@@ -54,8 +56,10 @@ namespace Hanabi_Kata_March2024
 
         internal Card DistributeCard()
         {
-            Card card = _cardsInDeck[0];
-            _cardsInDeck.RemoveAt(0);
+            Random random = new Random();
+            int randomNumber = random.Next(0, _cardsInDeck.Count);
+            Card card = _cardsInDeck[randomNumber];
+            _cardsInDeck.RemoveAt(randomNumber);
             return card;
         }
     }

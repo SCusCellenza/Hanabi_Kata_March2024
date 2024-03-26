@@ -71,6 +71,24 @@ namespace Hanabi_Kata_March2024
                 Assert.Equal(NUMBER_OF_5_CARDS - 1, deck.CountCardsOfColorAndValue(card.color, card.value));
             }
         }
+
+        //TODO : check if all cards where distributed
+        [Fact]
+        public void DeckShouldBeEmpty_WhenItDistributeAllCards()
+        {
+            // Arrange
+            Deck deck = new Deck();
+            List<Card> distributedCards = new List<Card>();
+
+            // Act
+            for (int i = 0; i < NUMBER_OF_CARDS; i++)
+            {
+                distributedCards.Add(deck.DistributeCard());
+            }
+
+            // Assert
+            Assert.Equal(0, deck.Count());
+        }
         
     }
 }

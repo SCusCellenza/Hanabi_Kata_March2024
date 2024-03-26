@@ -56,6 +56,9 @@ namespace Hanabi_Kata_March2024
 
         internal Card DistributeCard()
         {
+            if (_cardsInDeck.Count() == 0)
+                { throw new Exception("Deck is empty, you are not allowed to pick a card"); }
+
             Random random = new Random();
             int randomNumber = random.Next(0, _cardsInDeck.Count);
             Card card = _cardsInDeck[randomNumber];

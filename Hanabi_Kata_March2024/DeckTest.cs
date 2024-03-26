@@ -89,6 +89,22 @@ namespace Hanabi_Kata_March2024
             // Assert
             Assert.Equal(0, deck.Count());
         }
+
+        [Fact]
+        public void DeckShouldThrowAnException_WhenItDistributeACardAndItIsEmpty()
+        {
+            // Arrange
+            Deck deck = new Deck();
+            for (int i = 0; i < NUMBER_OF_CARDS; i++)
+            {
+                deck.DistributeCard();
+            }
+
+            // Act
+
+            // Assert
+            Assert.Throws<Exception>(() => deck.DistributeCard());
+        }   
         
     }
 }

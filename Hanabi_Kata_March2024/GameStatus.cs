@@ -5,7 +5,7 @@ using Xunit.Sdk;
 
 namespace Hanabi_Kata_March2024
 {
-    internal class Game
+    internal class GameStatus
     {
         const int MAX_ALLOWED_MISTAKES = 3;
         const int MAX_COMPLETED_SEQUENCES = 5;
@@ -17,12 +17,15 @@ namespace Hanabi_Kata_March2024
         public int NumberOfRemainingCardsInTheDeck { get; private set; }
         public bool AllPlayersPlayedDuringLastRound { get; internal set; }
 
-        public Game()
+        private Deck _deck;
+
+        public GameStatus(Deck deck)
         {
             NumberOfMistakesMade = 0;
             NumberOfCompletedSequences = 0;
             NumberOfRemainingCardsInTheDeck = 50;
             AllPlayersPlayedDuringLastRound = false;
+            _deck = deck;
         }
         internal void MistakeIsMade()
         {
@@ -33,16 +36,10 @@ namespace Hanabi_Kata_March2024
         {
             NumberOfCompletedSequences++;
         }
-        internal void ACardIsPicked()
-        {
-            if (NumberOfRemainingCardsInTheDeck == 0) 
-                { throw new Exception("Deck is empty, you are not allowed to pick a card"); }
-            NumberOfRemainingCardsInTheDeck--;
-        }
 
         public bool IsInItsLastRound()
         {
-            if (NumberOfRemainingCardsInTheDeck > 0) { return false; }
+            if (_deck.Count() > 0) { return false; }
             return true;
         }
 
@@ -57,6 +54,7 @@ namespace Hanabi_Kata_March2024
         {
             if (IsLost()) return true;
             if (IsWon()) return true;
+            //TODO : not implemented
             if (AllPlayersPlayedDuringLastRound) return true;
             
             return false;

@@ -1,14 +1,14 @@
 namespace Hanabi_Kata_March2024
 {
-    public class GameStatusTest
+    public class GameTest
     {
-        private GameStatus gameStatus;
+        private Game gameStatus;
         const int MAX_ALLOWED_MISTAKES = 3;
         const int MAX_COMPLETED_SEQUENCES = 5;
-        public GameStatusTest()
+        public GameTest()
         {
             // Constructor is called before each test method
-            gameStatus = new GameStatus(new Deck());
+            gameStatus = new Game(new Deck());
         }
 
         [Fact]
@@ -95,7 +95,7 @@ namespace Hanabi_Kata_March2024
             {
                 deck.DistributeCard();
             }
-            GameStatus gameStatus = new GameStatus(deck);
+            Game gameStatus = new Game(deck);
 
             //Act
 

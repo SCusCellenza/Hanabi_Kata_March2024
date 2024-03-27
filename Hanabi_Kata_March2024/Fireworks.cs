@@ -2,6 +2,7 @@
 
 namespace Hanabi_Kata_March2024
 {
+    //TODO Rename this class
     internal class Fireworks
     {
         private Dictionary<CardColors, int> playedCard;
@@ -17,6 +18,7 @@ namespace Hanabi_Kata_March2024
             };
         }
 
+        //TODO : couldn't this be replaced by a property ?
         internal int Count()
         {
             int score = 0;

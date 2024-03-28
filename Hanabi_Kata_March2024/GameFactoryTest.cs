@@ -79,19 +79,19 @@ namespace Hanabi_Kata_March2024
             Assert.Equal(40, game.Deck.Count());
         }
 
-        //[Theory]
-        //[InlineData(1)]
-        //[InlineData(6)]
-        //public void WhenAGameFactoryIsCalledForLessThan2PlayersOrMoreThan5Players_ThenErrorIsThrown(int numberOfPlayers)
-        //{
-        //    //Arrange
-        //    GameFactory gameFactory = new GameFactory();
+        [Theory]
+        [InlineData(1)]
+        [InlineData(6)]
+        public void WhenAGameFactoryIsCalledForLessThan2PlayersOrMoreThan5Players_ThenErrorIsThrown(int numberOfPlayers)
+        {
+            //Arrange
+            GameFactory gameFactory = new GameFactory();
 
-        //    //Act
-        //    Action act = () => gameFactory.TryCreateGame(numberOfPlayers);
+            //Act
+            Action act = () => gameFactory.TryCreateGame(numberOfPlayers);
 
-        //    //Assert
-        //    Assert.Throws<ArgumentException>(act);
-        //}
+            //Assert
+            Assert.Throws<ArgumentException>(act);
+        }
     }
 }

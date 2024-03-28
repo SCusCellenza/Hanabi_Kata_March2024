@@ -4,6 +4,7 @@ namespace Hanabi_Kata_March2024
     internal class GameFactory
     {
         public List<Player> Players = new List<Player>();
+        public Deck cardDeck { get; private set; }
 
 
         internal Game TryCreateGame(int numberOfPlayers)
@@ -12,8 +13,7 @@ namespace Hanabi_Kata_March2024
             {
                 throw new System.ArgumentException("Number of players must be between 2 and 5");
             }
-            Deck cardDeck = new Deck();
-
+            cardDeck = new Deck();
             DealHands(numberOfPlayers, cardDeck);
 
             return new Game(cardDeck, Players);

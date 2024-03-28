@@ -35,16 +35,16 @@ namespace Hanabi_Kata_March2024
             return new Information(new List<int> { 1 }, 1);
         }
 
-        internal void PickACard(Card card)
-        {
-            hand.Add(card);
-        }
 
         internal Card PlayCard()
         {
             Card playedCard  = hand[0];
             hand.RemoveAt(0);
             return playedCard;
+        }
+        internal void PickACard(Card card)
+        {
+            hand.Add(card);
         }
     }
 }

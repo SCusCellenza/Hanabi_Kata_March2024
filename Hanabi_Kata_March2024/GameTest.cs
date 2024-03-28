@@ -2,26 +2,30 @@ namespace Hanabi_Kata_March2024
 {
     public class GameTest
     {
-        private Game gameStatus;
+        private Game game;
         const int MAX_ALLOWED_MISTAKES = 3;
         const int MAX_COMPLETED_SEQUENCES = 5;
         public GameTest()
         {
             // Constructor is called before each test method
-            gameStatus = new Game(new Deck());
+            List<Player> players = new List<Player> {
+                new Player(new List<Card> { }),
+                new Player(new List<Card> { })
+            };
+            game = new Game(new Deck(), players);
         }
 
         [Fact]
         public void IfAMistakeIsMade_ARedTokenIsAddedInTheBox()
         {
             //Arrange
-            int initialMistakes = gameStatus.NumberOfMistakesMade;
+            int initialMistakes = game.NumberOfMistakesMade;
 
             //Act
-            gameStatus.MistakeIsMade();
+            game.MistakeIsMade();
 
             //Assert
-            Assert.Equal(1, gameStatus.NumberOfMistakesMade -  initialMistakes);
+            Assert.Equal(1, game.NumberOfMistakesMade -  initialMistakes);
         }
 
         [Fact]
@@ -30,14 +34,14 @@ namespace Hanabi_Kata_March2024
             //Arrange
 
             //Act
-            gameStatus.MistakeIsMade();
-            gameStatus.MistakeIsMade();
-            gameStatus.MistakeIsMade();
+            game.MistakeIsMade();
+            game.MistakeIsMade();
+            game.MistakeIsMade();
 
             //Assert
-            Assert.True(gameStatus.IsOver());
-            Assert.True(gameStatus.IsLost());
-            Assert.Equal(MAX_ALLOWED_MISTAKES, gameStatus.NumberOfMistakesMade);
+            Assert.True(game.IsOver());
+            Assert.True(game.IsLost());
+            Assert.Equal(MAX_ALLOWED_MISTAKES, game.NumberOfMistakesMade);
         }
 
         [Fact]
@@ -46,12 +50,12 @@ namespace Hanabi_Kata_March2024
             //Arrange
 
             //Act
-            gameStatus.MistakeIsMade();
+            game.MistakeIsMade();
 
             //Assert
-            Assert.False(gameStatus.IsOver());
-            Assert.False(gameStatus.IsLost());
-            Assert.NotEqual(MAX_ALLOWED_MISTAKES, gameStatus.NumberOfMistakesMade);
+            Assert.False(game.IsOver());
+            Assert.False(game.IsLost());
+            Assert.NotEqual(MAX_ALLOWED_MISTAKES, game.NumberOfMistakesMade);
         }
 
         [Fact]
@@ -62,14 +66,14 @@ namespace Hanabi_Kata_March2024
             //Act
             for (int i = 0; i < MAX_COMPLETED_SEQUENCES; i++)
             {
-                gameStatus.ASequenceIsCompleted();
+                game.ASequenceIsCompleted();
             }
 
             //Assert
-            Assert.True(gameStatus.IsOver());
-            Assert.True(gameStatus.IsWon());
-            Assert.False(gameStatus.IsLost());
-            Assert.Equal(MAX_COMPLETED_SEQUENCES, gameStatus.NumberOfCompletedSequences);
+            Assert.True(game.IsOver());
+            Assert.True(game.IsWon());
+            Assert.False(game.IsLost());
+            Assert.Equal(MAX_COMPLETED_SEQUENCES, game.NumberOfCompletedSequences);
         }
 
         [Fact]
@@ -78,11 +82,11 @@ namespace Hanabi_Kata_March2024
             //Arrange
 
             //Act
-            gameStatus.ASequenceIsCompleted();
+            game.ASequenceIsCompleted();
 
             //Assert
-            Assert.False(gameStatus.IsWon());
-            Assert.NotEqual(MAX_COMPLETED_SEQUENCES, gameStatus.NumberOfCompletedSequences);
+            Assert.False(game.IsWon());
+            Assert.NotEqual(MAX_COMPLETED_SEQUENCES, game.NumberOfCompletedSequences);
             //No other assert needs to be made, the game can be over or not, lost or not, for this test 
         }
 
@@ -95,12 +99,27 @@ namespace Hanabi_Kata_March2024
             {
                 deck.DistributeCard();
             }
-            Game gameStatus = new Game(deck);
+            List<Player> players = new List<Player> {
+                new Player(new List<Card> { }),
+                new Player(new List<Card> { })
+            };
+            Game game = new Game(deck, players);
 
             //Act
 
             //Assert
-            Assert.True(gameStatus.IsInItsLastRound());
+            Assert.True(game.IsInItsLastRound());
+        }
+
+        [Fact]
+        public void WhenGameIsCreated_ThenAListOfPlayersIsInitialized()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.NotNull(game.Players);
         }
     }
 }

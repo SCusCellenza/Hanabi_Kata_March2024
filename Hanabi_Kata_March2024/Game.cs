@@ -17,13 +17,15 @@ namespace Hanabi_Kata_March2024
         public bool AllPlayersPlayedDuringLastRound { get; internal set; }
 
         public Deck Deck;
+        public List<Player> Players;
 
-        public Game(Deck deck)
+        public Game(Deck deck, List<Player> players)
         {
             NumberOfMistakesMade = 0;
             NumberOfCompletedSequences = 0;
             AllPlayersPlayedDuringLastRound = false;
             Deck = deck;
+            Players = players;
         }
         internal void MistakeIsMade()
         {

@@ -19,18 +19,18 @@ namespace Hanabi_Kata_March2024
             Assert.NotNull(game);
         }
 
-        //[Fact]
-        //public void WhenGameFactoryIsCalled_ThenACollectionOfNPlayersIsCreated()
-        //{
-        //    //Arrange
-        //    int numberOfPlayers = 2;
-        //    GameFactory gameFactory = new GameFactory();
+        [Fact]
+        public void WhenGameFactoryIsCalled_ThenACollectionOfNPlayersIsCreated()
+        {
+            //Arrange
+            int numberOfPlayers = 2;
+            GameFactory gameFactory = new GameFactory();
 
-        //    //Act
-        //    Game game  = gameFactory.TryCreateGame(numberOfPlayers);
+            //Act
+            Game game = gameFactory.TryCreateGame(numberOfPlayers);
 
-        //    //Assert
-        //    Assert.Equal(numberOfPlayers, gameFactory.Players.Count());
-        //}
+            //Assert
+            Assert.Equal(numberOfPlayers, gameFactory.Players.Count());
+        }
     }
 }

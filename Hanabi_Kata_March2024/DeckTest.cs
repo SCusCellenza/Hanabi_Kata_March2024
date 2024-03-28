@@ -104,7 +104,20 @@ namespace Hanabi_Kata_March2024
 
             // Assert
             Assert.Throws<Exception>(() => deck.DistributeCard());
-        }   
-        
+        }
+
+        [Fact]
+        public void DeckShouldDealAHandOfNCards_WhenItIsAskedToDealAHandOfNCards()
+        {
+            // Arrange
+            Deck deck = new Deck();
+            int numberOfCards = 5;
+
+            // Act
+            List<Card> hand = deck.DealHand(numberOfCards);
+
+            // Assert
+            Assert.Equal(numberOfCards, hand.Count());
+        }
     }
 }

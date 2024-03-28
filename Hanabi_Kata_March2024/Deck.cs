@@ -76,5 +76,15 @@ namespace Hanabi_Kata_March2024
             _cardsInDeck.RemoveAt(randomNumber);
             return card;
         }
+
+        internal List<Card> DealHand(int numberOfCards)
+        {
+            List<Card> hand = new List<Card>();
+            for (int i = 0; i < numberOfCards; i++)
+            {
+                hand.Add(DistributeCard());
+            }
+            return hand;
+        }
     }
 }

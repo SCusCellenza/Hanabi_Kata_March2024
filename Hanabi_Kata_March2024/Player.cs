@@ -6,6 +6,7 @@
 
 
 
+
 namespace Hanabi_Kata_March2024
 {
     internal class Player
@@ -32,6 +33,11 @@ namespace Hanabi_Kata_March2024
         internal Information GiveNumberInformation()
         {
             return new Information(new List<int> { 1 }, 1);
+        }
+
+        internal void PickACard(Card card)
+        {
+            hand.Add(card);
         }
 
         internal Card PlayCard()

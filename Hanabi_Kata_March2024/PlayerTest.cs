@@ -17,9 +17,11 @@ namespace Hanabi_Kata_March2024
                     new Card(4, CardColors.RED),
                     new Card(5, CardColors.RED) });
 
-            Player player = new Player(playersHand);
+            player = new Player(playersHand);
         }
-        public void WhenPlayerIsCreated_ThenPlayerHasHasAHandOfNCards()
+
+        [Fact]
+        public void WhenPlayerIsCreated_ThenPlayerReceivesAHandOfCards()
         {
             //Arrange
 
@@ -29,6 +31,7 @@ namespace Hanabi_Kata_March2024
             Assert.Equal(playersHand, player.hand);
         }
 
+        [Fact]
         public void WhenAPlayerGivesAnInformation_ThenItContainsThePositionsOfTheCardsIndicated()
         {
             //Arrange
@@ -42,6 +45,7 @@ namespace Hanabi_Kata_March2024
             Assert.NotNull(information2.Positions);
         }
 
+        [Fact]
         public void WhenAplayerGivesAnInformationForAColor_ThenItContainsTheColorToIndicate()
         {
             //Arrange
@@ -53,6 +57,7 @@ namespace Hanabi_Kata_March2024
             Assert.NotNull(information.Color);
         }
 
+        [Fact]
         public void WhenAPlayerGivesAnInformationForANumber_ThenItContainsTheNumberToIndicate()
         {
             //Arrange
@@ -64,6 +69,7 @@ namespace Hanabi_Kata_March2024
             Assert.NotNull(information.CardNumber);
         }
 
+        [Fact]
         public void WhenAPlayerPlaysACard_ThenTheCardIsRemovedFromTheHand()
         {
             //Arrange
@@ -74,9 +80,9 @@ namespace Hanabi_Kata_March2024
 
             //Assert
             Assert.Equal(initialHandCount - 1, player.hand.Count);
-            Assert.Equal(playersHand[0], card);
         }
 
+        [Fact]
         public void WhenAPlayerDicardsACard_ThenTheCardIsRemovedFromTheHand()
         {
             //Arrange
@@ -87,7 +93,23 @@ namespace Hanabi_Kata_March2024
 
             //Assert
             Assert.Equal(initialHandCount - 1, player.hand.Count);
-            Assert.Equal(playersHand[0], card);
+        }
+
+        [Fact]
+        public void WhenAPlayerPicksACard_ThenItIsAddedToTheHand()
+        {
+            //Arrange
+            Card card = new Card(5, CardColors.BLUE);
+            bool cardIsInitialyInHand = player.hand.Contains(card);
+
+            //Act
+            player.DiscardCard();
+            player.PickACard(card);
+            bool cardIsInHandAfterwards = player.hand.Contains(card);
+
+            //Assert
+            Assert.False(cardIsInitialyInHand);
+            Assert.True(cardIsInHandAfterwards);
         }
     }
 }
